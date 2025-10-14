@@ -97,68 +97,63 @@ This project follows a **minimalist and lightweight design philosophy**, with st
 <details open>
 <summary>🇨🇳 中文</summary>
 
-本项目构建了一个跨平台的**嵌入式-上位机协同通信架构**，通过蓝牙实现 STM32 嵌入式系统与 ROS1 主机之间的双向数据透传。下图为整个系统的消息流结构示意图，包含 ROS 节点间通信（`rqt_graph` 风格）与嵌入式端控制逻辑的融合视图。
+本项目采用**极简透传通信模型**，实现 STM32 嵌入式系统与 ROS1 主机之间的单向传感器上传与单向控制指令下发。整个系统**无里程计、无闭环反馈**，所有 SLAM 与导航计算均在 ROS 端基于纯激光数据完成。下图为系统消息流结构示意图。
 
-![消息通信架构图](https://your-repo.com/path/to/communication_diagram.png)  
+![消息通信架构图](./assets/communication_architecture.png)  
 *图：系统整体消息流与模块交互关系*
 
-### 📡 通信流程解析：
+### 📡 通信流程说明：
 
-1. **传感器数据上传**：
-   - RPLIDAR C1 的原始激光数据（十六进制）由 `btYawF2H` 模块解析后，通过蓝牙发送至 ROS 端；
-   - IMU 数据经 `imu_yaw` 处理后，作为姿态信息同步上传；
-   - 所有传感器数据在 ROS 端由 `/radar_parser_node` 解析并发布到 `/scan` 主题，供 SLAM 使用。
+1. **雷达数据透传（STM32 → ROS）**：
+   - RPLIDAR C1 输出的原始十六进制激光数据流，由 STM32 直接读取；
+   - STM32 **不解析雷达协议**，仅在原始数据前添加自定义通信帧头（如起始标志、长度字段），通过蓝牙**透明透传**至 ROS 主机；
+   - ROS 端的 `/radar_parser_node` 负责帧同步、去头、解析原始数据，并发布标准 `/scan` 消息供 `hector_slam` 使用。
 
-2. **导航指令下发**：
-   - 用户设定目标点后，`move_base` 输出期望速度指令 `/cmd_vel`；
-   - 该指令经 `/velocity_parser_node` 转换为蓝牙可传输格式（如 `BT_yaw`, `BT_rmv`, `BT_lrv`），通过蓝牙发送至 STM32；
-   - STM32 接收后，结合编码器反馈，执行 PID 控制，驱动电机。
+2. **速度指令下发（ROS → STM32）**：
+   - 用户设定目标点后，定制版 `move_base` 输出期望的**左右轮速**（非 `/cmd_vel` Twist 消息）；
+   - `/velocity_parser_node` 将轮速打包为轻量指令帧，通过蓝牙发送至 STM32；
+   - STM32 接收后直接驱动电机执行 PID 控制，**不回传任何状态或里程计信息**。
 
-3. **闭环反馈机制**：
-   - STM32 实时将电机实际速度、IMU 角度等状态通过蓝牙回传；
-   - ROS 端接收后更新里程计（`odom`）和状态估计，形成闭环控制。
+3. **无闭环设计**：
+   - 嵌入式端**完全屏蔽里程计数据的收发**，不采集编码器、不计算位姿；
+   - ROS 端使用 `hector_slam` 实现**无里程计 SLAM**（laser-only），不依赖 `/odom`；
+   - 整个系统为**开环控制架构**，依赖高精度激光建图与路径跟踪，适用于静态、已知或可探索的迷宫环境。
 
-4. **特殊优化设计**：
-   - 为提升竞速性能，局部规划器已移除代价地图更新逻辑，仅保留路径跟踪；
-   - `hector_slam` 无需里程计，直接基于激光建图，适用于无轮式编码器的场景。
-
-> ✅ 本架构实现了“**传感器数据上行 + 控制指令下行**”的轻量化透传模式，适合资源受限但需远程 SLAM 的应用。
+> ✅ 该设计大幅降低嵌入式负载与通信开销，专注于**远程透传 + 主机端 SLAM + 高速路径跟踪**，契合轻量化竞速场景。
 
 </details>
 
 <details>
 <summary>🇺🇸 English</summary>
 
-This project establishes a cross-platform communication architecture between the embedded system (STM32) and the ROS1 host, enabling bidirectional data transmission via Bluetooth. The following diagram illustrates the complete message flow, combining ROS node interactions (`rqt_graph` style) with the embedded control logic.
+This project adopts a **minimalist transparent transmission model**, enabling unidirectional sensor data upload and unidirectional control command download between the STM32 embedded system and the ROS1 host. The system operates **without odometry and without closed-loop feedback**—all SLAM and navigation are performed on the ROS side using laser-only data. The diagram below illustrates the complete message flow.
 
-![Communication Architecture Diagram](https://your-repo.com/path/to/communication_diagram.png)  
+![Communication Architecture Diagram](./assets/communication_architecture.png)  
 *Figure: System-wide message flow and module interaction*
 
-### 📡 Communication Flow Breakdown:
+### 📡 Communication Flow:
 
-1. **Sensor Data Upload**:
-   - Raw laser data from RPLIDAR C1 (in hexadecimal format) is parsed by `btYawF2H` and transmitted over Bluetooth to the ROS side;
-   - IMU orientation data is processed by `imu_yaw` and uploaded in real time;
-   - All sensor data is parsed by `/radar_parser_node` on the ROS side and published to `/scan`, feeding into `hector_slam`.
+1. **LiDAR Data Transparent Transmission (STM32 → ROS)**:
+   - The raw hexadecimal data stream from RPLIDAR C1 is read directly by STM32;
+   - STM32 **does not parse the LiDAR protocol**. Instead, it prepends a custom frame header (e.g., start flag, length field) and forwards the data **transparently over Bluetooth** to the ROS host;
+   - On the ROS side, `/radar_parser_node` performs frame synchronization, header stripping, and protocol parsing, then publishes standard `/scan` messages for `hector_slam`.
 
-2. **Navigation Command Downlink**:
-   - After a goal is set, `move_base` generates target velocity commands via `/cmd_vel`;
-   - These are converted by `/velocity_parser_node` into Bluetooth-compatible format (e.g., `BT_yaw`, `BT_rmv`, `BT_lrv`) and sent to STM32;
-   - STM32 receives the command, applies PID control based on encoder feedback, and drives the motors.
+2. **Velocity Command Downlink (ROS → STM32)**:
+   - After a goal is set, the customized `move_base` outputs desired **left/right wheel velocities** (not standard `/cmd_vel` Twist messages);
+   - `/velocity_parser_node` packs these velocities into lightweight command frames and sends them via Bluetooth to STM32;
+   - STM32 receives the commands and directly drives the motors using PID control, **without sending back any status or odometry data**.
 
-3. **Closed-Loop Feedback**:
-   - STM32 continuously sends back motor speed, IMU yaw, and other status data via Bluetooth;
-   - ROS receives this feedback to update odometry (`odom`) and state estimation, forming a closed-loop control system.
+3. **Open-Loop Design**:
+   - The embedded side **completely disables odometry transmission and reception**—no encoder reading, no pose estimation;
+   - ROS uses `hector_slam` for **odometry-free SLAM** (laser-only), with no reliance on `/odom`;
+   - The entire system operates in an **open-loop control mode**, relying on accurate laser-based mapping and high-speed path tracking, making it suitable for static or explorable maze environments.
 
-4. **Key Design Optimizations**:
-   - To enhance racing performance, the local planner disables costmap updates and filtering, focusing solely on path tracking;
-   - `hector_slam` operates without odometry, relying purely on laser data—ideal for systems without wheel encoders.
-
-> ✅ This architecture enables a lightweight transparent transmission model: **sensor data up, control commands down**, suitable for resource-constrained systems requiring remote SLAM.
+> ✅ This design significantly reduces embedded workload and communication overhead, focusing on **remote transparent transmission + host-side SLAM + high-speed path tracking**, ideal for lightweight racing scenarios.
 
 </details>
 
 ---
+
 
 
 
