@@ -66,7 +66,53 @@ This project is suitable for:
 
 ## 📂 项目结构 / Project Structure
 
+<details open>
+<summary>🇨🇳 中文</summary>
 
+```text
+autonomous-car-project/
+├── .gitignore
+├── README.md
+├── LICENSE
+├── embedded/               # STM32CubeMX + Keil MDK 项目
+│   ├── APP/
+│   ├── Core/
+│   ├── Drivers/
+│   ├── MDK-ARM/
+│   └── MPU6050.ioc               # CubeMX 配置文件
+├── ros_ws/
+│   └── src/
+│       ├── blue_teeth_pkg  # 蓝牙通信 + 雷达解析 + 控制中枢
+│       ├── hector_nav_demo # SLAM + 导航 + 自定义规划器
+│       └── remoter_pkg     # 自定义键盘遥控
+└── assets/                 # 图片、GIF 等资源
+```
+
+</details>
+
+<details>
+<summary>🇺🇸 English</summary>
+
+```text
+autonomous-car-project/
+├── .gitignore
+├── README.md
+├── LICENSE
+├── embedded/               # STM32CubeMX + Keil MDK project
+│   ├── APP/
+│   ├── Core/
+│   ├── Drivers/
+│   ├── MDK-ARM/
+│   └── MPU6050.ioc               # CubeMX config
+├── ros_ws/
+│   └── src/
+│       ├── blue_teeth_pkg  # Bluetooth + radar parsing + control hub
+│       ├── hector_nav_demo # SLAM + navigation + custom planner
+│       └── remoter_pkg     # Custom keyboard teleoperation
+└── assets/                 # Images, GIFs
+```
+
+</details>
 
 ---
 
