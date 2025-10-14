@@ -1,5 +1,11 @@
-# autonomous-car-project
-STM32F446RE+ROS1 racing robot: RPLIDAR C1 + IMU, Bluetooth comms, hector_slam mapping, PID motor control, and a custom move_base local planner optimized for high-speed go-and-return navigation via referee node.
+# Autonomous Racing Robot (STM32 + ROS1)
+
+STM32F446RE + ROS1 racing robot: RPLIDAR C1 + IMU, Bluetooth comms, hector_slam mapping, PID motor control, and a custom move_base local planner optimized for high-speed go-and-return navigation via referee node.
+
+> **Author**: [StarDust 星辰涵], Beijing University of Posts and Telecommunications (BUPT)  
+> **License**: MIT (see [LICENSE](LICENSE))
+
+---
 
 <details open>
 <summary>🇨🇳 中文说明</summary>
@@ -10,5 +16,112 @@ STM32F446RE+ROS1 racing robot: RPLIDAR C1 + IMU, Bluetooth comms, hector_slam ma
 <details>
 <summary>🇺🇸 English</summary>
 
-This project presents an autonomous racing robot based on a differential-drive chassis (with a caster wheel), featuring tight integration between an STM32-based embedded system and a ROS1 (Noetic) navigation stack via Bluetooth. The embedded side handles real-time data acquisition from an RPLIDAR C1 and an IMU, executes PID-controlled motor commands based on velocity targets from the host, and communicates bidirectionally over Bluetooth. On the ROS side, `hector_slam` enables lidar-only SLAM for map building, while a customized local planner in `move_base` is optimized for high-speed racing trajectories—prioritizing path tracking over traditional obstacle avoidance. A dedicated “referee node” allows users to specify a goal coordinate relative to the start point, enabling fully autonomous go-and-return navigation. The overall design aims for remote transparent transmission of SLAM mapping, racing planning, and precise control.
+This project presents an autonomous racing robot based on a differential-drive chassis (with a caster wheel), featuring tight integration between an STM32-based embedded system and a ROS1 (Noetic) navigation stack via Bluetooth. The embedded side handles real-time data acquisition from an RPLIDAR C1 and an IMU, executes PID-controlled motor commands based on velocity targets from the host, and communicates bidirectionally over Bluetooth. On the ROS side, `hectorMapping_slam` enables lidar-only SLAM for map building, while a customized local planner in `move_base` is optimized for high-speed racing trajectories—prioritizing path tracking over traditional obstacle avoidance. A dedicated “referee node” allows users to specify a goal coordinate relative to the start point, enabling fully autonomous go-and-return navigation. The overall design aims for transparent SLAM mapping, racing-oriented planning, and precise control.
 </details>
+
+---
+
+## 🎥 演示视频 / Demo Video
+
+<details open>
+<summary>🇨🇳 中文</summary>
+
+- **完整演示（Bilibili）**: [点击观看视频](https://www.bilibili.com/video/BVxxxxxx)  
+- **快速预览（GIF）**:
+
+![Demo GIF](assets/demo.gif)
+</details>
+
+<details>
+<summary>🇺🇸 English</summary>
+
+- **Full Demo (Bilibili)**: [Watch on Bilibili](https://www.bilibili.com/video/BVxxxxxx)  
+- **Quick Preview (GIF)**:
+
+![Demo GIF](assets/demo.gif)
+</details>
+
+
+---
+
+## 🛠 适用场景 / Use Cases
+
+<details open>
+<summary>🇨🇳 中文</summary>
+
+本项目适用于以下场景：
+
+
+</details>
+
+<details>
+<summary>🇺🇸 English</summary>
+
+This project is suitable for:
+
+
+</details>
+
+---
+
+## 📂 项目结构 / Project Structure
+
+
+
+---
+
+## ⚙️ 关键模块说明 / Key Modules Overview
+
+<details open>
+<summary>🇨🇳 中文</summary>
+
+### 嵌入式端（STM32F446RE）
+
+
+### ROS1 上位机
+
+</details>
+
+<details>
+<summary>🇺🇸 English</summary>
+
+### Embedded Side (STM32F446RE)
+
+
+### ROS1 Host
+
+</details>
+
+---
+
+## 🔁 移植建议 / Porting Guide
+
+<details open>
+<summary>🇨🇳 中文</summary>
+
+
+</details>
+
+<details>
+<summary>🇺🇸 English</summary>
+
+</details>
+
+---
+
+## 🐞 已知问题 / Known Issues
+
+<details open>
+<summary>🇨🇳 中文</summary>
+
+
+</details>
+
+<details>
+<summary>🇺🇸 English</summary>
+
+
+</details>
+
+---
+
