@@ -1,0 +1,61 @@
+# =============== ROS1 Workspace Artifacts ===============
+# Ignore build/devel/install/logs in ros_ws
+ros_ws/build/
+ros_ws/devel/
+ros_ws/install/
+ros_ws/logs/
+ros_ws/.catkin_tools/
+
+# Ignore generated message/service/action files (they are rebuilt)
+ros_ws/src/**/msg_gen/
+ros_ws/src/**/srv_gen/
+ros_ws/src/**/action_gen/
+ros_ws/src/**/msg/_*.py
+ros_ws/src/**/srv/_*.py
+ros_ws/src/**/cfg/*Config.h
+ros_ws/src/**/cfg/*Config.py
+ros_ws/src/**/cfg/cpp/
+
+# Ignore dynamic_reconfigure compiled files
+*.cfgc
+
+# =============== STM32 (Keil MDK) ===============
+# Build artifacts from Keil
+embedded/MDK-ARM/Objects/
+embedded/MDK-ARM/Listings/
+embedded/MDK-ARM/*.axf
+embedded/MDK-ARM/*.bin
+embedded/MDK-ARM/*.hex
+embedded/MDK-ARM/*.map
+embedded/MDK-ARM/*.htm
+embedded/MDK-ARM/*.lnp
+embedded/MDK-ARM/*.sct
+embedded/MDK-ARM/*.tra
+embedded/MDK-ARM/*.lst
+embedded/MDK-ARM/*.d
+embedded/MDK-ARM/*.o
+
+# Keep project configuration files
+!embedded/*.ioc
+!embedded/*.uvprojx
+!embedded/*.uvoptx
+
+# =============== General & Editor ===============
+*.log
+*.pcd
+*.pyc
+__pycache__/
+.DS_Store
+Thumbs.db
+*~
+.#*
+
+# IDE
+.vscode/
+.idea/
+.project
+.cproject
+CMakeLists.txt.user
+
+# Catkin
+CATKIN_IGNORE
