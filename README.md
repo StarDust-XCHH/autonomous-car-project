@@ -5,7 +5,20 @@ STM32F446RE + ROS1 racing robot: RPLIDAR C1 + IMU, Bluetooth comms, hector_slam 
 > **Author**: [StarDust 星辰涵], Beijing University of Posts and Telecommunications (BUPT)  
 > **License**: MIT (see [LICENSE](LICENSE))
 
+## 📑 目录 / Table of Contents
+
+- [Autonomous Racing Robot (STM32 + ROS1)](#autonomous-racing-robot-stm32--ros1)
+- [📄 项目说明 / Project Description](#-项目说明--project-description)
+- [🎥 演示视频 / Demo Video](#-演示视频--demo-video)
+- [🛠 适用场景 / Use Cases](#-适用场景--use-cases)
+- [📂 项目结构 / Project Structure](#-项目结构--project-structure)
+- [⚙️ 关键模块说明 / Key Modules Overview](#️-关键模块说明--key-modules-overview)
+- [🔁 移植建议 / Porting Guide](#-移植建议--porting-guide)
+- [🐞 已知问题 / Known Issues](#-已知问题--known-issues)
+
 ---
+
+## 📄 项目说明 / Project Description
 
 <details open>
 <summary>🇨🇳 中文说明</summary>
