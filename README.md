@@ -185,8 +185,9 @@ autonomous-car-project/
 ├── ros_ws/
 │   └── src/
 │       ├── blue_teeth_pkg  # 蓝牙通信 + 雷达解析 + 控制中枢
-│       ├── hector_nav_demo # SLAM + 导航 + 自定义规划器
+│       ├── hector_nav_demo # SLAM + 导航
 │       └── remoter_pkg     # 自定义键盘遥控
+│       └── my_planner      # 自定义局部规划器 + 裁判节点
 └── assets/                 # 图片、GIF 等资源
 ```
 
@@ -209,8 +210,9 @@ autonomous-car-project/
 ├── ros_ws/
 │   └── src/
 │       ├── blue_teeth_pkg  # Bluetooth + radar parsing + control hub
-│       ├── hector_nav_demo # SLAM + navigation + custom planner
+│       ├── hector_nav_demo # SLAM + navigation 
 │       └── remoter_pkg     # Custom keyboard teleoperation
+│       └── my_planner      # custom local planner + referee node
 └── assets/                 # Images, GIFs
 ```
 
@@ -224,6 +226,8 @@ autonomous-car-project/
 <summary>🇨🇳 中文</summary>
 
 ### 嵌入式端（STM32F446RE）
+
+
 
 
 ### ROS1 上位机
