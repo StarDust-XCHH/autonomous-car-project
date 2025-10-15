@@ -70,7 +70,7 @@ This project presents an autonomous racing robot based on a differential-drive c
 - **教学或竞赛原型开发**：适合用于机器人学、嵌入式系统与 ROS 集成的教学演示，或作为“起点-目标-返航”类竞速任务的快速原型基础。
 
 > ⚠️ **注意事项**：  
-> 本项目**未实现动态障碍物避障**——为提升竞速性能，局部规划器已移除代价地图的实时更新与滤波机制，因此仅适用于**静态环境**（无移动障碍物）。  
+> 本项目**未实现动态障碍物避障**——为提升竞速性能，代价地图已移除代价的实时更新与滤波机制，因此仅适用于**静态环境**（无移动障碍物）。  
 > 若无需蓝牙透传、可直接通过串口连接雷达与主机，推荐使用官方 [rplidar_ros](https://github.com/Slamtec/rplidar_ros) 驱动，其稳定性与兼容性更佳。
 
 </details>
@@ -85,7 +85,7 @@ This project follows a **minimalist and lightweight design philosophy**, with st
 - **Educational or competition prototyping**: Useful for teaching ROS-embedded integration, SLAM, and autonomous navigation, or as a rapid prototype for “go-to-goal-and-return” robotics challenges.
 
 > ⚠️ **Note**:  
-> This project **does not support dynamic obstacle avoidance**. To maximize racing performance, the local planner disables real-time costmap updates and filtering. Therefore, it is **only suitable for static environments** (no moving obstacles).  
+> This project **does not support dynamic obstacle avoidance**. To maximize racing performance, the costmap disables real-time cost updates and filtering. Therefore, it is **only suitable for static environments** (no moving obstacles).  
 > If a direct serial connection between LiDAR and host is feasible (i.e., no Bluetooth relay needed), the official [rplidar_ros](https://github.com/Slamtec/rplidar_ros) driver is a more robust and maintainable choice.
 
 </details>
