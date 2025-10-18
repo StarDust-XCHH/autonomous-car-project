@@ -11,11 +11,14 @@ STM32F446RE + ROS1 racing robot: RPLIDAR C1 + IMU, Bluetooth comms, hector_slam 
 - [📄 项目说明 / Project Description](#-项目说明--project-description)
 - [🎥 演示视频 / Demo Video](#-演示视频--demo-video)
 - [🛠 适用场景 / Use Cases](#-适用场景--use-cases)
+- [📋 设备清单 / Equipment List](#-设备清单--equipment-list)
 - [🔧 消息通信架构 / Communication Architecture](#-消息通信架构--communication-architecture)
 - [📂 项目结构 / Project Structure](#-项目结构--project-structure)
 - [⚙️ 关键模块说明 / Key Modules Overview](#️-关键模块说明--key-modules-overview)
 - [🔁 移植建议 / Porting Guide](#-移植建议--porting-guide)
 - [🐞 已知问题 / Known Issues](#-已知问题--known-issues)
+
+
 
 ---
 
@@ -96,6 +99,59 @@ This project follows a **minimalist and lightweight design philosophy**, with st
 > If a direct serial connection between LiDAR and host is feasible (i.e., no Bluetooth relay needed), the official [rplidar_ros](https://github.com/Slamtec/rplidar_ros) driver is a more robust and maintainable choice.
 
 </details>
+
+---
+
+## 📋 设备清单 / Equipment List
+
+<details open>
+<summary>🇨🇳 中文</summary>
+
+- NUCLEO-F446RE Nucleo-64 开发板  
+- MPU6050 6DOF 六轴 6 轴姿态加速度传感器模块(I2C)  
+- HC-04 初学者套餐
+- RPLIDAR C1 思岚 C1 激光雷达 + 转接线 + 安装支架  
+- ATB236 双路驱动模块+12V 2550mAh 锂电池 3C 充电器套件【焊接排针】  
+- MCS20 带霍尔编码器(L:30 减速比) + 圆形三轮车底盘  
+- 杜邦线 20cm（40P/排/公对公）  
+- 电机 ph2.0 线连接 ATB236 驱动板 PH2.0 转 XH2.54  
+- 建图导航围栏道具（100 PCS）  
+- 收纳盒大号智能小车通用  
+- 平头螺丝 M2.5×8-头径 5  
+- 单头铜柱 M2.5×10+6 固定 8236 驱动板  
+- 单头铜柱 M2.5×50+5 固定雷达  
+- 平头 M3×12  
+- 六角螺帽 M3  
+- 双通铜柱 M3×30 固定开发板  
+- L 型固定 L30 固定开发板  
+
+</details>
+
+<details>
+<summary>🇺🇸 English</summary>
+
+- NUCLEO-F446RE Nucleo-64 Development Board  
+- MPU6050 6DOF 6-axis Attitude and Acceleration Sensor Module (I²C)  
+- HC-04 Beginner Kit
+- RPLIDAR C1 Slamtec LiDAR + Adapter Cable + Mounting Bracket  
+- ATB236 Dual Motor Driver Module + 12V 2550mAh Lithium Battery + 3C Charger Kit [Soldered Headers]  
+- MCS20 Motor with Hall Encoder (L:30 Gear Ratio) + Round 3-Wheel Robot Chassis  
+- 20cm Dupont Jumper Wires (40-pin/strip, male-to-male)  
+- Motor PH2.0 Cable Connector for ATB236 Driver (PH2.0 to XH2.54 adapter)  
+- Mapping & Navigation Barrier Props (100 pcs)  
+- Large Storage Box (Universal for Smart Robot Car)  
+- Flat-head Screw M2.5×8 (Head Diameter: 5mm)  
+- Single-end Brass Standoff M2.5×10+6 (for securing 8236 driver board)  
+- Single-end Brass Standoff M2.5×50+5 (for mounting LiDAR)  
+- Flat-head Screw M3×12  
+- Hex Nut M3  
+- Dual-end Brass Standoff M3×30 (for mounting development board)  
+- L-shaped Bracket L30 (for securing development board)  
+
+</details>
+
+
+
 
 ---
 
