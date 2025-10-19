@@ -173,8 +173,8 @@ This project follows a **minimalist and lightweight design philosophy**, with st
    - ROS 端的 `/radar_parser_node` 负责帧同步、去头、解析原始数据，并发布标准 `/scan` 消息供 `hector_slam` 使用。
 
 2. **速度指令下发（ROS → STM32）**：
-   - 用户设定目标点后，定制版 `move_base` 输出期望的**左右轮速**（非 `/cmd_vel` Twist 消息）；
-   - `/velocity_parser_node` 将轮速打包为轻量指令帧，通过蓝牙发送至 STM32；
+   - 用户设定目标点后，定制版 `move_base` 输出期望的 `/cmd_vel` Twist 消息；
+   - `/velocity_parser_node` 将轮速打包为轻量指令帧（左右轮速），通过蓝牙发送至 STM32；
    - STM32 接收后直接驱动电机执行 PID 控制，**不回传任何状态或里程计信息**。
 
 3. **无闭环设计**：
@@ -202,8 +202,8 @@ This project adopts a **minimalist transparent transmission model**, enabling un
    - On the ROS side, `/radar_parser_node` performs frame synchronization, header stripping, and protocol parsing, then publishes standard `/scan` messages for `hector_slam`.
 
 2. **Velocity Command Downlink (ROS → STM32)**:
-   - After a goal is set, the customized `move_base` outputs desired **left/right wheel velocities** (not standard `/cmd_vel` Twist messages);
-   - `/velocity_parser_node` packs these velocities into lightweight command frames and sends them via Bluetooth to STM32;
+   - After a goal is set, the customized `move_base` outputs desired `/cmd_vel` Twist messages;
+   - `/velocity_parser_node` packs these velocities into lightweight command frames(left/right wheel velocities) and sends them via Bluetooth to STM32;
    - STM32 receives the commands and directly drives the motors using PID control, **without sending back any status or odometry data**.
 
 3. **Open-Loop Design**:
