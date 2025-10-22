@@ -1,0 +1,66 @@
+TebLocalPlannerROS:
+
+  # ========== 机器人模型 ==========
+  # 差速驱动模型（differential drive）
+  odom_topic: /odom
+  map_frame: map
+
+  # 机器人几何（必须正确！）
+  robot_type: "diff"  # diff, omnidirectional, carlike
+
+  # 使用圆形足迹
+  robot_radius: 0.15  # 单位：米
+
+  footprint_model:
+    type: "circular"
+    radius: 0.15
+
+  # ========== 速度与加速度限制 ==========
+  max_vel_x: 0.3
+  min_vel_x: 0.0
+  max_vel_x_backwards: 0.1  # 允许轻微倒车
+  max_vel_theta: 0.3
+  min_vel_theta: -0.3
+
+  acc_lim_x: 0.8
+  acc_lim_theta: 1.5
+
+  # ========== 轨迹优化参数 ==========
+  # 时间分辨率（越小越精细，但计算量大）
+  dt_ref: 0.3
+  dt_hysteresis: 0.1
+
+  # ========== 障碍物避障 ==========
+  min_obstacle_dist: 0.05    # 与障碍物最小距离（米）
+  inflation_dist: 0.2        # 障碍物膨胀距离（用于软约束）
+  include_costmap_obstacles: true
+  costmap_obstacles_behind_robot_dist: 1.0
+
+  # ========== 路径跟踪 ==========
+  weight_kinematics_forward_drive: 1000.0  # 鼓励前进（禁止后退时设高）
+  weight_kinematics_turning_radius: 1.0
+  weight_optimaltime: 1.0
+  weight_shortest_path: 0.0
+  weight_obstacle: 50.0
+  weight_inflation: 0.2
+  weight_velocity: 1.0
+  weight_acceleration: 1.0
+  weight_dynamic_obstacle: 10.0  # 动态障碍物（如果有）
+  weight_viapoint: 1.0
+
+  # ========== 全局路径跟踪 ==========
+  global_plan_viapoint_sep: 0.05  # 每 15cm 取一个 viapoint
+  global_plan_overwrite_orientation: true
+  allow_init_with_backwards_motion: false
+  max_global_plan_lookahead_dist: 1.5
+
+  # ========== 行为控制 ==========
+  oscillation_recovery_enabled: true
+  oscillation_v_eps: 0.1
+  oscillation_omega_eps: 0.1
+  oscillation_recovery_min_duration: 3.0
+
+  # ========== 调试 ==========
+  publish_feedback: true
+  publish_traj_via_points: true
+  publish_robot_footprint_model: true

@@ -1,0 +1,60 @@
+# ========== 局部代价地图（Local Costmap）基础配置 ==========
+
+# 代价地图所基于的全局坐标系 —— 通常与全局代价地图一致，使用 /map
+# 所有传感器数据将被转换到此坐标系下进行融合
+global_frame: map
+
+# 机器人本体的基准坐标系（如 base_link 或 base_footprint）
+# 用于将激光雷达等传感器数据从机器人坐标系转换到 global_frame
+robot_base_frame: base_link
+
+# 地图更新频率（Hz）—— 指处理传感器数据、更新障碍物层的频率
+# 局部地图要求响应快，通常设为 5~20 Hz；此处 10.0 Hz 适合中速移动机器人
+update_frequency: 8.0
+
+# 地图发布频率（Hz）—— 指 /costmap 话题和可视化数据的发布频率
+# 用于 RViz 显示或调试，可低于 update_frequency，5 Hz 通常足够流畅显示
+publish_frequency: 5.0
+
+# 是否加载静态地图（如已知环境地图）
+# 局部代价地图一般只关注动态障碍物，设为 false 表示不叠加静态地图层
+static_map: false
+
+# 是否启用滚动窗口模式（Rolling Window）
+# true = 地图始终以机器人当前位置为中心，随机器人移动滚动更新 → 适用于局部避障
+rolling_window: true
+
+# 滚动窗口宽度（单位：米）—— 覆盖机器人前方及侧方避障所需范围
+# 6.0m 适合室内中速机器人；高速或大机器人可增大，低速小车可缩小（如 3~4m）
+width: 1.0
+
+# 滚动窗口高度（单位：米）—— 通常与 width 相同，保持对称
+height: 1.0
+
+
+# 地图分辨率（米/像素）—— 每个栅格代表的实际物理尺寸
+# 0.05m（5cm）是室内机器人常用精度；若计算资源紧张可设为 0.1m
+resolution: 0.02
+
+# TF 坐标变换容忍时间（秒）—— 允许的坐标变换延迟最大值
+# 若机器人运动快或 TF 更新慢，可适当增大（如 0.5~1.0），但过大会导致定位不准
+transform_tolerance: 1.2
+
+update_frequency: 10.0
+publish_frequency: 10.0
+
+# 允许将未知区域视为可通行（对 rolling_window 模式至关重要）
+track_unknown_space: true
+
+
+# ========== 插件层配置 ==========
+
+# 定义局部代价地图由哪些功能层组成（顺序决定叠加优先级）
+plugins:
+  # 障碍物层：负责实时接收传感器数据（如激光雷达），动态标记和清除障碍物
+  # 是局部避障的核心，必须启用
+  - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+  
+  # 膨胀层：在检测到的障碍物周围生成“安全缓冲区”，引导局部规划器绕行
+  # 膨胀半径和衰减系数通常在 inflation_layer 参数中单独配置（见之前配置）
+  - {name: inflation_layer, type: "costmap_2d::InflationLayer"}

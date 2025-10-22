@@ -1,0 +1,54 @@
+# ========== 全局代价地图（Global Costmap）基础配置 ==========
+
+# 代价地图所基于的“全局”坐标系（通常是 /map，由定位或SLAM提供）
+# 所有障碍物和膨胀层都将相对于此坐标系进行变换和叠加
+global_frame: map
+
+# 机器人本体的基准坐标系（通常是 base_link 或 base_footprint）
+# 用于将传感器数据从机器人坐标系转换到 global_frame
+robot_base_frame: base_link
+
+# 代价地图更新频率（Hz）：指传感器数据处理和障碍物层更新的频率
+# 值越高响应越快，但计算负载越大。通常 3~10 Hz 足够
+update_frequency: 2.0
+
+# 代价地图发布频率（Hz）：指 /costmap 话题和可视化数据的发布频率
+# 可低于 update_frequency，一般 1~5 Hz 即可满足 RViz 显示需求
+publish_frequency: 3.0
+
+# 是否使用静态地图（如 map_server 提供的已知地图）
+# false 表示不加载静态地图 —— 适用于纯动态环境或 SLAM 实时建图导航
+static_map: false
+
+# 是否启用滚动窗口模式（Rolling Window）
+# true 表示代价地图始终以机器人当前位置为中心滚动更新，大小固定
+# 适用于无先验地图或大范围探索场景（此时“全局地图”实为机器人周围局部区域）
+rolling_window: true
+
+# 允许将未知区域视为可通行（对 rolling_window 模式至关重要）
+track_unknown_space: false
+
+# 滚动窗口的宽度（单位：米）
+width: 100.0
+
+# 滚动窗口的高度（单位：米）
+height: 100.0
+
+# 地图分辨率（单位：米/像素）—— 每个栅格代表的实际物理尺寸
+# 0.05m = 5cm，适合室内机器人；室外可设为 0.1~0.2m 以降低计算量
+resolution: 0.02
+
+# TF 坐标变换的容忍时间（秒）—— 允许的 TF 数据延迟或不同步最大值
+# 若 TF 更新慢于机器人运动，可适当增大（但不宜超过 1.0，否则定位不准）
+transform_tolerance: 1.2
+
+
+# ========== 插件层配置 ==========
+
+# 定义代价地图由哪些插件层组成（顺序影响叠加效果）
+plugins:
+  # 障碍物层：负责将传感器数据（如激光雷达）动态标记/清除障碍物
+  - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+  
+  # 膨胀层：在障碍物周围生成代价梯度，引导路径规划器保持安全距离
+  - {name: inflation_layer, type: "costmap_2d::InflationLayer"}

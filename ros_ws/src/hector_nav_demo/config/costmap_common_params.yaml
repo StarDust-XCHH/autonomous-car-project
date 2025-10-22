@@ -1,0 +1,51 @@
+# 机器人本体的半径（单位：米）
+# 用于碰撞检测和膨胀计算。应略大于机器人实际物理半径，留出安全余量。
+# 影响：A* 在全局路径中避开障碍物的安全距离；DWA 在局部避障时判断是否碰撞。
+robot_radius: 0.15
+
+
+
+# 障碍物层配置 —— 用于将传感器数据（如激光雷达）动态更新到代价地图中
+obstacle_layer:
+  # 是否启用障碍物层
+  enabled: true
+  
+  
+  obstacle_range: 10.0
+  raytrace_range: 10.0
+
+  # 指定用于障碍物检测的传感器数据源名称（可多个，空格分隔）
+  # 此处只使用名为 "scan" 的激光雷达数据源
+  observation_sources: scan
+
+
+
+  # 激光雷达传感器配置
+  scan:
+    # 传感器坐标系名称（TF 中的 frame_id）
+    sensor_frame: laser
+
+    # 数据类型：支持 LaserScan（2D激光）或 PointCloud2（3D点云）
+    data_type: LaserScan
+
+    # 订阅的激光雷达话题名称
+    topic: /scan
+
+    # 是否将检测到的障碍物“标记”在代价地图中（设为障碍物）
+    marking: true
+
+    # 是否根据传感器数据“清除”代价地图中不再存在的障碍物（如动态障碍物移开）
+    clearing: false
+
+    # 期望的传感器数据更新频率（Hz）。若低于此值会报警，但不会中断导航
+    # 用于监控传感器是否正常工作。设为 0 表示不检查。
+    expected_update_rate: 5.0
+
+# 膨胀层配置 —— 用于在障碍物周围生成“危险区”，引导机器人保持安全距离
+inflation_layer:
+  # 是否启用膨胀层
+  enabled: true
+  # 膨胀半径（单位：米）
+  inflation_radius: 0.3
+  # 膨胀系数（用于计算膨胀半径）：值越大，越Widely Inflated
+  cost_scaling_factor: 5   # // 慎重考虑，似乎应该更大

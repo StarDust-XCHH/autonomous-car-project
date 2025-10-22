@@ -1,0 +1,37 @@
+# ========== GlobalPlanner 具体参数配置 ==========
+base_global_planner: global_planner/GlobalPlanner
+
+planner_frequency: 8.0
+allow_unknown: true
+default_tolerance: 0.2
+
+# ✅ 关键：使用 Dijkstra（更稳定，配合梯度优化效果更好）
+use_dijkstra: true
+
+# ✅ 必须启用：使用二次插值计算势场梯度（让路径向“势能谷底”靠拢，即通道中心）
+use_quadratic: true
+
+# ✅ 启用路径平滑（后处理）
+smooth: true
+
+# ✅ 关键：关闭“字典序优先”（lexicographic）
+# 默认 true 时，规划器会优先选择“先x后y”的路径，导致贴边
+# 设为 false 后，完全由势场梯度决定方向，更居中
+lexicographic: false
+
+
+# 在 GlobalPlanner 参数中添加（如果支持）：
+# 注意：部分 ROS 版本需源码编译才支持
+downsample_costmap: false
+lethal_cost: 253
+neutral_cost: 50
+
+# 使用全地图规划（不裁剪）
+planner_window_x: 0.0
+planner_window_y: 0.0
+
+# 兼容性关闭
+old_navfn_behavior: false
+
+# 调试用
+publish_potential: true

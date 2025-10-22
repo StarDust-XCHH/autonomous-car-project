@@ -1,0 +1,4 @@
+string target_controller  # 请求：要切换到的控制器节点名
+---
+bool success              # 响应：是否成功
+string message            # 响应：说明信息

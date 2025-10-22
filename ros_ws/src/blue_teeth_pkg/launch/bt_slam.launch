@@ -1,0 +1,34 @@
+<launch>
+    <!-- 启动蓝牙相关节点 -->
+    <include file="$(find blue_teeth_pkg)/launch/blue_tooth.launch" />
+
+
+
+
+
+
+
+
+    <!-- 启动 Hector SLAM 节点 -->
+    <!-- <include file="$(find slam_pkg)/launch/hector_mapping.launch" /> -->
+
+
+    <!-- 上下二选一 -->
+
+    <!-- 启动 Hector SLAM 节点 与 导航节点 -->
+    <include file="$(find hector_nav_demo)/launch/nav_with_hector.launch" />
+
+
+
+
+
+
+    <!-- 启动 RViz，加载指定配置文件 -->
+    <node name="rviz" pkg="rviz" type="rviz" 
+          args="-d $(find blue_teeth_pkg)/rviz/bt_slam_rviz.rviz"
+          required="true" />
+
+
+
+
+</launch>

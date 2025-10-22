@@ -1,0 +1,25 @@
+<!-- keyboard_subscriber_node.launch -->
+<launch>
+
+  <!-- ========== 可配置参数 ========== -->
+  <arg name="max_linear_vel" default="0.3" />
+  <arg name="max_angular_vel" default="0.4" />
+
+
+  <!-- ========== 启动键盘to速度控制器节点 ========== -->
+  <node name="keyboard_subscriber_node" pkg="remoter_pkg" type="keyboard_subscriber_node" output="screen">
+    <!-- 配置速度上限 -->
+    <param name="max_linear_velocity" value="$(arg max_linear_vel)" />
+    <param name="max_angular_velocity" value="$(arg max_angular_vel)" />
+  </node>
+
+  <!-- ========== 启动键盘监听节点（在独立终端中） ========== -->
+  <node name="keyboard_listener_node" 
+        pkg="remoter_pkg" 
+        type="keyboard_listener_node" 
+        output="screen"
+        launch-prefix="xterm -title 'Keyboard Controller' -geometry 80x20+100+100 -fa 'Monospace' -fs 14 -e"
+        required="true">
+  </node>
+
+</launch>

@@ -1,0 +1,40 @@
+<launch>
+    <!-- 参数 -->
+    <arg name="wheel_base" default="0.165" />
+    <arg name="active_controller" default="keyboard" />
+
+    <!-- 启动节点 -->
+    <node pkg="blue_teeth_pkg"
+          type="velocity_parser_node"
+          name="velocity_parser_node"
+          output="screen">
+
+        <param name="wheel_base" value="$(arg wheel_base)" />
+        <param name="active_controller" value="$(arg active_controller)" />
+
+        <!-- 控制器映射：逻辑名 → 实际发布 /cmd_vel 的节点名 -->
+        <rosparam param="controller_mapping">
+            keyboard: /keyboard_subscriber_node
+            dwa: /move_base
+        </rosparam>
+
+    </node>
+
+    <!-- ========== 启动操作转换数据包节点（在独立终端中） ========== -->
+    <node name="controller_switcher_node" 
+            pkg="blue_teeth_pkg" 
+            type="controller_switcher_node" 
+            output="screen"
+            required="true">
+    </node>
+
+    <!-- 使用说明 -->
+    <!--
+        roslaunch blue_teeth_pkg velocity_parser.launch
+        roslaunch blue_teeth_pkg velocity_parser.launch active_controller:=dwa
+
+        运行时切换：
+        rosservice call /velocity_parser_node/switch_controller "target_controller: 'dwa'"
+        rosservice call /velocity_parser_node/switch_controller "target_controller: 'keyboard'"
+    -->
+</launch>

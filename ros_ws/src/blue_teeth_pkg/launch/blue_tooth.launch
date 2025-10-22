@@ -1,0 +1,41 @@
+<launch>
+    <!-- 主蓝牙节点 -->
+    <node name="bluetooth_node" pkg="blue_teeth_pkg" type="bluetooth_node" output="screen">
+        <remap from="/bluetooth/received_data" to="/bluetooth/received_data"/>
+        <remap from="/bluetooth/send_command" to="/bluetooth/send_command"/>
+    </node>
+
+
+    <!-- 启动 速度转发 -->
+    <include file="$(find blue_teeth_pkg)/launch/velocity_parser.launch" />
+
+    <!-- 启动 键盘操纵节点 -->
+    <include file="$(find remoter_pkg)/launch/keyboard_remoter.launch" />
+
+    <!-- 雷达解析节点 -->
+    <node name="radar_parser_node" 
+          pkg="blue_teeth_pkg" 
+          type="radar_parser_node" 
+          output="screen">
+        <!-- 可选：添加参数或重映射 -->
+        <!-- <param name="param_name" value="param_value"/> -->
+        <!-- <remap from="/original_topic" to="/new_topic"/> -->
+    </node>
+
+    <!-- 激光雷达点云节点 -->
+    <node name="lidar_point_node"
+          pkg="blue_teeth_pkg"
+          type="lidar_point_node"
+          output="screen">
+        <!-- 可根据需要添加 remap 或 param -->
+    </node>
+
+    <!-- 激光雷达帧处理节点 -->
+    <node name="lidar_frame_node"
+          pkg="blue_teeth_pkg"
+          type="lidar_frame_node"
+          output="screen">
+        <!-- 可根据需要添加 remap 或 param -->
+    </node>
+
+</launch>
