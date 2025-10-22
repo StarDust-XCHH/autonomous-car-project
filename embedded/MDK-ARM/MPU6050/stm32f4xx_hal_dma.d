@@ -1,0 +1,15 @@
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
+mpu6050\stm32f4xx_hal_dma.o: ../Core/Inc/stm32f4xx_hal_conf.h
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/CMSIS/Include/core_cm4.h
+mpu6050\stm32f4xx_hal_dma.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/CMSIS/Include/cmsis_version.h
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/CMSIS/Include/mpu_armv7.h
+mpu6050\stm32f4xx_hal_dma.o: C:\Users\lmtgy\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
+mpu6050\stm32f4xx_hal_dma.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
