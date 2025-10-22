@@ -307,11 +307,22 @@ autonomous-car-project/
 <details open>
 <summary>🇨🇳 中文</summary>
 
+本项目分为 嵌入式下位机 与 ROS1 上位机 两部分，各自有独立的移植说明：
+- 📌 [嵌入式系统移植指南（中文）](embedded/README.md#chinese)
+- 📌 [ROS1 上位机移植指南（中文）](ros_ws/README.md#chinese)
+
+请根据你的开发目标选择对应文档。
 
 </details>
 
 <details>
 <summary>🇺🇸 English</summary>
+
+This project consists of two parts: Embedded (lower-level) and ROS1 (upper-level). Each has its own porting guide:
+- 📌 [Embedded System Porting Guide (English)](embedded/README.md#english)
+- 📌 [ROS1 Upper-Level Porting Guide (English)](ros_ws/README.md#english)
+
+Please refer to the relevant documentation based on your development target.
 
 </details>
 
