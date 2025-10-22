@@ -1,3 +1,4 @@
+## Chinese
 <details open>
 <summary>🇨🇳 中文说明</summary>
 🐧 ROS1 移植指南（Ubuntu 20.04 + ROS Noetic）
@@ -67,6 +68,8 @@ roslaunch blue_teeth_pkg bt_slam.launch
 
 
 </details>
+
+## English
 
 <details>
 <summary>🇺🇸 English</summary>
