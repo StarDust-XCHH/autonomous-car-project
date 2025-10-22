@@ -5,9 +5,10 @@
 请严格按以下步骤操作，确保项目能正确生成并编译：
 
 1. 使用 Git 克隆项目（不要复制粘贴！）
-bash
+```bash
 git clone https://github.com/yourname/autonomous-car-project.git
 cd autonomous-car-project/embedded
+```
 
 2. 安装必要工具
 安装 [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)
@@ -38,9 +39,10 @@ Options for Target → C/C++ → Include Paths → 添加 ..\APP
 Follow these steps exactly to ensure successful code generation and compilation:
 
 1. Clone the project using Git (do NOT copy-paste!)
-bash
+```bash
 git clone https://github.com/yourname/autonomous-car-project.git
 cd autonomous-car-project/embedded
+```
 
 2. Install required tools
 Install [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)
