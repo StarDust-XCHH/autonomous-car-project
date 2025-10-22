@@ -1,3 +1,4 @@
+## Chinese
 <details open>
 <summary>🇨🇳 中文说明</summary>
 🛠️ 嵌入式端移植与配置步骤（STM32F446）
@@ -31,6 +32,8 @@ Options for Target → C/C++ → Include Paths → 添加 ..\APP
 ✅ 提示：始终通过 git clone 获取项目，切勿手动复制文件夹。
 
 </details>
+
+## English
 
 <details>
 <summary>🇺🇸 English</summary>
