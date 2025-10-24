@@ -233,10 +233,9 @@ autonomous-car-project/
 ├── README.md
 ├── LICENSE
 ├── embedded/               # STM32CubeMX + Keil MDK 项目
-│   ├── APP/
-│   ├── Core/
-│   ├── Drivers/
-│   ├── MDK-ARM/
+│   ├── APP/                # 外设代码文件
+│   ├── Core/               # 主程序main函数
+│   ├── MDK-ARM/            # keil项目入口
 │   └── MPU6050.ioc               # CubeMX 配置文件
 ├── ros_ws/
 │   └── src/
@@ -258,17 +257,16 @@ autonomous-car-project/
 ├── README.md
 ├── LICENSE
 ├── embedded/               # STM32CubeMX + Keil MDK project
-│   ├── APP/
-│   ├── Core/
-│   ├── Drivers/
-│   ├── MDK-ARM/
-│   └── MPU6050.ioc               # CubeMX config
+│   ├── APP/                # Peripheral driver code
+│   ├── Core/               # Main application (main function)
+│   ├── MDK-ARM/            # Keil project entry point
+│   └── MPU6050.ioc         # CubeMX configuration file
 ├── ros_ws/
 │   └── src/
 │       ├── blue_teeth_pkg  # Bluetooth + radar parsing + control hub
-│       ├── hector_nav_demo # SLAM + navigation 
-│       └── remoter_pkg     # Custom keyboard teleoperation
-│       └── my_planner      # custom local planner + referee node
+│       ├── hector_nav_demo # SLAM + navigation
+│       ├── remoter_pkg     # Custom keyboard teleoperation
+│       └── my_planner      # Custom local planner + referee node
 └── assets/                 # Images, GIFs
 ```
 
