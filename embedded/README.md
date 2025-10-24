@@ -7,7 +7,7 @@
 
 1. 使用 Git 克隆项目（不要复制粘贴！）
 ```bash
-git clone https://github.com/yourname/autonomous-car-project.git
+git clone https://github.com/StarDust-XCHH/autonomous-car-project.git
 cd autonomous-car-project/embedded
 ```
 
