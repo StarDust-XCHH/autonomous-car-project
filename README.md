@@ -236,7 +236,7 @@ autonomous-car-project/
 │   ├── APP/                # 外设代码文件
 │   ├── Core/               # 主程序main函数
 │   ├── MDK-ARM/            # keil项目入口
-│   └── MPU6050.ioc               # CubeMX 配置文件
+│   └── MPU6050.ioc         # CubeMX 配置文件
 ├── ros_ws/
 │   └── src/
 │       ├── blue_teeth_pkg  # 蓝牙通信 + 雷达解析 + 控制中枢
