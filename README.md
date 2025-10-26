@@ -43,7 +43,7 @@ This project presents an autonomous racing robot based on a differential-drive c
 <details open>
 <summary>🇨🇳 中文</summary>
 
-- **完整演示（Bilibili）**: [点击观看视频](https://www.bilibili.com/video/BVxxxxxx)  
+- **完整演示（Bilibili）**: [点击观看视频]([https://www.bilibili.com/video/BVxxxxxx](https://www.bilibili.com/video/BV18Bs4zBEsY?t=0.1))  
 - **快速预览-已经过倍速（GIF）**:
 
 ![快速预览-已经过倍速](./assets/quick_preview.gif)  
@@ -55,7 +55,7 @@ This project presents an autonomous racing robot based on a differential-drive c
 <details>
 <summary>🇺🇸 English</summary>
 
-- **Full Demo (Bilibili)**: [Watch on Bilibili](https://www.bilibili.com/video/BVxxxxxx)  
+- **Full Demo (Bilibili)**: [Watch on Bilibili]([https://www.bilibili.com/video/BVxxxxxx](https://www.bilibili.com/video/BV18Bs4zBEsY?t=0.6&p=2))  
 - **Quick Preview-times faster (GIF)**:
 
 ![quick_preview-times faster](./assets/quick_preview.gif)  
